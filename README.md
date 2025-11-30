@@ -1,16 +1,29 @@
-# my_sanctuary
+# 🌟 Innerlog: 내면의 행복을 기록하는, 가장 사적인 공간
 
-A new Flutter project.
+Innerlog는 소셜 미디어의 전시 문화에서 벗어나, 오직 나만을 위해 행복의 순간을 포착하고 음미하며 기억하는 Flutter 기반의 비공개 일기 애플리케이션입니다.
 
-## Getting Started
+복잡한 기능이나 외부의 시선 없이 당신의 행복에 온전히 집중할 수 있도록 설계되었습니다.
 
-This project is a starting point for a Flutter application.
+# 💡 Innerlog, 왜 필요할까요?
 
-A few resources to get you started if this is your first Flutter project:
+우리는 종종 행복한 순간을 '남에게 보여주기 위해' 사진을 찍고 포장합니다. 좋아요와 댓글을 기대하는 전시의 순간이 아니라, 순수한 기쁨 그 자체를 느끼고 싶다면 Innerlog가 당신의 답입니다.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Innerlog. 당신의 행복은 전시되지 않을 때 가장 순수하게 빛납니다. 지금 다운로드하여 나만을 위한 비밀의 행복 기록을 시작하세요.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Innerlog는 다음과 같은 핵심 가치를 제공합니다.
+
+🔒 비공개 원칙: 모든 기록은 오직 당신의 스마트폰에만 안전하게 저장되며, 외부 서버 공유 기능, 좋아요, 댓글 기능이 일절 없습니다. 진정한 자기 만족감을 느껴보세요.
+
+✨ 순간 포착: 행복의 순간을 텍스트, 사진, 그리고 감정 온도(1~5점)로 빠르게 기록하고 휘발되지 않도록 붙잡아 둡니다.
+
+🧘 자기 음미: 과거의 행복했던 기록들을 천천히 다시 보며, 내가 어떤 순간에 진정으로 기뻐하는지 발견하고 스스로에게 위로를 얻습니다.
+
+
+# 🛠️ 프로젝트 개요 및 기술 스택
+
+이 프로젝트는 Android와 iOS 환경에서 모두 실행 가능한 고성능 앱을 목표로 Flutter를 사용하여 개발된 MVP (Minimum Viable Product)입니다.
+항목,상세 내용
+프레임워크,Flutter (Dart) - 아름답고 빠른 네이티브 애플리케이션 개발.
+상태 관리,Riverpod - 안전하고 효율적인 애플리케이션 상태 관리.
+데이터베이스,Isar DB - 빠르고 강력한 로컬 전용 데이터베이스를 사용하여 기록의 사생활 보호를 최우선으로 함.
+보안,local_auth - 생체 인식(지문/Face ID)을 이용한 강력한 앱 잠금 기능 구현.
