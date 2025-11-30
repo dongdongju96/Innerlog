@@ -9,7 +9,8 @@ import 'package:Innerlog/models/moment.dart';
 
 class AddMomentScreen extends StatefulWidget {
   final IsarService service;
-  const AddMomentScreen({super.key, required this.service});
+  final Moment? moment;
+  const AddMomentScreen({super.key, required this.service, this.moment});
 
   @override
   State<AddMomentScreen> createState() => _AddMomentScreenState();
@@ -22,6 +23,18 @@ class _AddMomentScreenState extends State<AddMomentScreen> {
   final _tagsController = TextEditingController();
   double _happinessScore = 3.0;
   String? _photoPath;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.moment != null) {
+      _titleController.text = widget.moment!.title;
+      _contentController.text = widget.moment!.content;
+      _happinessScore = widget.moment!.happinessScore.toDouble();
+      _tagsController.text = widget.moment!.secretTags.join(', ');
+      _photoPath = widget.moment!.photoPath;
+    }
+  }
 
   final ImagePicker _picker = ImagePicker();
 
@@ -42,7 +55,8 @@ class _AddMomentScreenState extends State<AddMomentScreen> {
 
   void _saveMoment() async {
     if (_formKey.currentState!.validate()) {
-      final moment = Moment()
+      final moment = widget.moment ?? Moment();
+      moment
         ..title = _titleController.text
         ..content = _contentController.text
         ..happinessScore = _happinessScore.toInt()
@@ -52,7 +66,7 @@ class _AddMomentScreenState extends State<AddMomentScreen> {
             .where((e) => e.isNotEmpty)
             .toList()
         ..photoPath = _photoPath
-        ..date = DateTime.now();
+        ..date = widget.moment?.date ?? DateTime.now();
 
       await widget.service.saveMoment(moment);
 
@@ -74,7 +88,7 @@ class _AddMomentScreenState extends State<AddMomentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Moment'),
+        title: Text(widget.moment != null ? 'Edit Moment' : 'New Moment'),
         actions: [
           IconButton(onPressed: _saveMoment, icon: const Icon(Icons.check)),
         ],

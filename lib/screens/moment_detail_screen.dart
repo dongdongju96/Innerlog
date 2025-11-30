@@ -1,18 +1,76 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:Innerlog/db/isar_service.dart';
 import 'package:Innerlog/models/moment.dart';
+import 'package:Innerlog/screens/add_moment_screen.dart';
 
 class MomentDetailScreen extends StatelessWidget {
   final Moment moment;
+  final IsarService service;
 
-  const MomentDetailScreen({super.key, required this.moment});
+  const MomentDetailScreen({
+    super.key,
+    required this.moment,
+    required this.service,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(DateFormat.yMMMd().format(moment.date))),
+      appBar: AppBar(
+        title: Text(DateFormat.yMMMd().format(moment.date)),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddMomentScreen(
+                    service: service,
+                    moment: moment,
+                  ),
+                ),
+              ).then((_) {
+                // When returning from edit, we pop this screen as well
+                // so the list can refresh. Alternatively, we could reload here.
+                // For simplicity, let's pop back to home.
+                Navigator.pop(context);
+              });
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () async {
+              final confirm = await showDialog<bool>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Delete Moment'),
+                  content: const Text('Are you sure you want to delete this moment?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, false),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, true),
+                      child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                    ),
+                  ],
+                ),
+              );
+
+              if (confirm == true) {
+                await service.deleteMoment(moment.id);
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
+              }
+            },
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

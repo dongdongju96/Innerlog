@@ -26,8 +26,32 @@ class IsarService {
     isar.writeTxnSync<int>(() => isar.moments.putSync(moment));
   }
 
-  Stream<List<Moment>> listenToMoments() async* {
+  Future<void> deleteMoment(Id id) async {
     final isar = await db;
-    yield* isar.moments.where().sortByDateDesc().watch(fireImmediately: true);
+    await isar.writeTxn(() async {
+      await isar.moments.delete(id);
+    });
+  }
+
+  Stream<List<Moment>> listenToMoments({
+    String query = '',
+    int? happinessScore,
+  }) async* {
+    final isar = await db;
+    yield* isar.moments
+        .filter()
+        .group((q) => query.isEmpty
+            ? q.idGreaterThan(-1)
+            : q
+                .titleContains(query, caseSensitive: false)
+                .or()
+                .contentContains(query, caseSensitive: false))
+        .and()
+        .group((q) => happinessScore == null
+            ? q.idGreaterThan(-1)
+            : q.happinessScoreEqualTo(happinessScore))
+        .sortByDateDesc()
+        .watch(fireImmediately: true);
   }
 }
+
