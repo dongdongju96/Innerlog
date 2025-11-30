@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_sanctuary/models/moment.dart';
+import 'package:Innerlog/models/moment.dart';
 
 class MomentDetailScreen extends StatelessWidget {
   final Moment moment;

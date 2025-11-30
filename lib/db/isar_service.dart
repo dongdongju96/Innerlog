@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:my_sanctuary/models/moment.dart';
+import 'package:Innerlog/models/moment.dart';
 
 class IsarService {
   late Future<Isar> db;

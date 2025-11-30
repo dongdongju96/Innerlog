@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:my_sanctuary/providers/moment_provider.dart';
-import 'package:my_sanctuary/screens/add_moment_screen.dart';
-import 'package:my_sanctuary/screens/moment_detail_screen.dart';
+import 'package:Innerlog/providers/moment_provider.dart';
+import 'package:Innerlog/screens/add_moment_screen.dart';
+import 'package:Innerlog/screens/moment_detail_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});

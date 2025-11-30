@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
-import 'package:my_sanctuary/db/isar_service.dart';
-import 'package:my_sanctuary/models/moment.dart';
+import 'package:Innerlog/db/isar_service.dart';
+import 'package:Innerlog/models/moment.dart';
 
 class AddMomentScreen extends StatefulWidget {
   final IsarService service;

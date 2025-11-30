@@ -1,6 +1,6 @@
 {
-    "name": "my_sanctuary",
-    "short_name": "my_sanctuary",
+    "name": "Innerlog",
+    "short_name": "Innerlog",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
