@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:Innerlog/providers/moment_provider.dart';
 import 'package:Innerlog/screens/add_moment_screen.dart';
 import 'package:Innerlog/screens/moment_detail_screen.dart';
+import 'package:Innerlog/theme/color_schemes.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -98,8 +99,13 @@ class HomeScreen extends ConsumerWidget {
                           children: [
                             Text(
                               moment.content,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                              maxLines: ref.watch(happinessFilterProvider) == null ? null : 2,
+                              overflow: ref.watch(happinessFilterProvider) == null ? null : TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: AppColors.primaryTextColor
+                                    .withOpacity(0.8),
+                                height: 1.5,
+                              ),
                             ),
                             const SizedBox(height: 4),
                             Text(
